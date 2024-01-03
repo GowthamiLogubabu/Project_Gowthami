@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        #user-table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #user-table th, #user-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #user-table thead {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        #user-details-header {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #user-dropdown {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="user-details-header">User Details</div>
+
+    <label for="user-dropdown">Select a User:</label>
+    <select id="user-dropdown" onchange="displayUserData()">
+        <!-- Dropdown options will be populated here -->
+    </select>
+
+    <table id="user-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Birth Date</th>
+                <th>Email</th>
+                <th>Postal Code</th>
+                <th>Address</th> <!-- New header for Address -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // script.js
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('https://dummyjson.com/users');
+                const data = await response.json();
+
+                const tableBody = document.querySelector('#user-table tbody');
+                const dropdown = document.querySelector('#user-dropdown');
+
+                // Populate table and dropdown
+                data.users.forEach(user => {
+                    const row = tableBody.insertRow();
+                    row.innerHTML = `<td>${user.id}</td><td>${user.firstName}</td><td>${user.lastName}</td><td>${user.birthDate}</td><td>${user.email}</td><td>${user.address ? user.address.postalCode : 'N/A'}</td>`;
+
+                    const option = document.createElement('option');
+                    option.value = user.id;
+                    option.text = user.firstName;
+                    dropdown.appendChild(option);
+                });
+
+                // Add event listener to the dropdown
+                dropdown.addEventListener('change', function() {
+                    const selectedUserId = dropdown.value;
+
+                    // Hide all rows
+                    for (let i = 0; i < tableBody.rows.length; i++) {
+                        tableBody.rows[i].style.display = 'none';
+                    }
+
+                    // Show the selected user's row
+                    const selectedUserRow = Array.from(tableBody.rows).find(row => row.cells[0].textContent === selectedUserId);
+                    if (selectedUserRow) {
+                        selectedUserRow.style.display = '';
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching or parsing data:', error);
+            }
+        });
+    </script>
+</body>
+</html>
