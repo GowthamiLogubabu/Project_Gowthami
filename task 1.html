@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <style>
+        body {
+            background: url('https://tse1.mm.bing.net/th?id=OIP.ULdxAkQ-9kJyUTO8h1u8VAHaFj&pid=Api&P=0&h=180') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333; /* Default text color */
+        }
+
+        header {
+            background-color: #3498db;
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 4;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        .dropdown {
+            text-align: center;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            text-align: left;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px;
+        }
+
+        #home h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+
+        #description {
+            font-size: 18px;
+            color: #555;
+        }
+
+        #home p {
+            font-size: 16px;
+            color: black;
+            line-height: 1.6;
+        }
+
+        #home a, #home button {
+            font-size: 16px;
+            color: #fff;
+            background-color: #3498db;
+            border: none;
+            padding: 12px 24px;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #home a:hover, #home button:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: #3498db;
+            padding: 20px;
+            text-align: right;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-content .dropdown {
+            margin-right: 20px;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <p><b>GOWTHAMI L</b></p>
+        <nav>
+            <div class="dropdown">
+                <button class="dropbtn">Skills</button>
+                <div class="dropdown-content">
+                    <a href="#">java </a>
+                    <a href="#">python </a>
+                    <a href="#">SQL </a>
+                </div>
+            </div>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="C:\Users\GOWTHAMI\Desktop\GOWTHAMI L-Resume.pdf">Resume</a>
+        </nav>
+    </header>
+    
+    <div id="home">
+        <div>
+            <h2>Gowthami LoguBabu</h2>
+            
+            <p id="description">FullStack Developer Intern</p>
+            <p>Student currently pursuing M.Sc.Information technology in MOP VAishnav College. 
+            And I am a former football player participated in national games in karnataka womens football association</p>
+            <div>
+                <a href="C:\Users\GOWTHAMI\Desktop\GOWTHAMI L-Resume.pdf">Go to Resume</a>
+                <button onclick="scrollToSection('contact')">Go to Contact</button>
+            </div>
+        </div>
+        <!-- Add an image to the right side -->
+        <img src="C:\Users\GOWTHAMI\Desktop\image-g.jpg" alt="Sample Image" style="width: 400px; height:400px;">
+    </div>
+
+    <div id="about">
+         <div>
+             <h2>MOP VAISHNAV COLLEGE</h2>
+             <img src="https://tse3.mm.bing.net/th?id=OIP.MT1N81DchQbOS_X2djv-nAHaEN&pid=Api&P=0&h=180" alt="Sample    Image" style="width: 400px; height:400px;">
+             <p>ABOUT COLLEGE </p>
+             <p>M.O.P. Vaishnav College for Women (Autonomous) is committed to the goals of attracting and supporting top calibre women students in the areas of higher education. Dewan Bahadur
+                 M.O.Parthasarathy Aiyengar a leading barrister, visionary philanthropist of yester years was an advocate of women’s education. Sri Vallabhacharya Vidya Sabh
+         prominent managing body  of D.G. Vaishnav College, in its Silver Jubliee Year in association with Deewan Bahadur M.O.Parthasarathy Aiyengar Charities established this women’s
+         college in 1992. This college is a dream realization, the result of the determination and sustained efforts of the two trusts. Both of these organizations have eminent 
+         industrialists, administrators and people committed to the cause of women’s education. While M.O.P Charities set apart the prime land in the heart of Chennai, the infrastructure              
+         and administrative expertise are being provided by Sri Vallabhacharya Vidya Sabha. Since its inception the college has recorded a phenomenal continual growth.
+
+
+  
+Initiated with just three courses- B.Com, BBA, B.Sc.(Maths) the college offers today 17 UG, 7 PG Programmes, and Research programmes in the Departments of Commerce, Management Studies and Communication & Media Studies. The college affiliated to the University of Madras, has strength of 3810 students, thus, recording a qualitative and quantitative growth. The college has been reaccredited by NAAC (National Assessment & Accreditation Council) at “A++” grade scale.
+
+M.O.P. Vaishnav College for Women also has the distinction of being one of the youngest colleges in the country to have been granted Autonomy by the University Grants Commission and University of Madras.</p>
+        </div>
+    </div>
+
+    <div id="contact">
+        <h2>Contact Section</h2>
+        <p>This is the contact section of the page.</p>
+    </div>
+
+    <script>
+
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+    <footer>
+        <div class="footer-content">
+        End of page | Contact:9003265177 | Mail: <a href="mailto:gowthamibabu7777@gmail.com">gowthamibabu7777@gmail.com</a>
+    </div>
+    </footer>
+</body>
+</html>

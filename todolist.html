@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><b>To-Do List</b></title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            background-image: url('https://wallpapertag.com/wallpaper/full/5/0/9/350850-website-background-1920x1234-for-android-50.jpg');
+            background-size: cover;
+            color: #333;
+        }
+
+        #inputBox {
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        #outputBox {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: green;
+        }
+
+        .delete-btn {
+            cursor: pointer;
+            color: red;
+            margin-left: 5px;
+            display: needed;
+        }
+
+        .tick-mark {
+            margin-left: 5px;
+            color: green;
+            font-weight: bold;
+        }
+
+        #bottomTextbox {
+            margin-top: 10px;
+            text-decoration: none;
+            padding: 5px;
+            cursor: pointer;
+            background-color: #ddd;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        #bottomTextbox:hover {
+            background-color: #ccc;
+        }
+
+        #pageTitle {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2e5d8e;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1 id="pageTitle">ToDo List Of Gowthami</h1>
+        <label for="taskInput">Enter Task:</label>
+        <input type="text" id="taskInput" />
+        <button onclick="addItem()">Add</button>
+    </div>
+
+    <ul id="outputBox" onclick="toggleItem(event)">
+        <!-- To-Do items will be displayed here -->
+    </ul>
+
+    <div id="bottomTextbox" onclick="toggleBottomText()">
+        <!-- Bottom text will be displayed here -->
+    </div>
+
+    <script>
+        // Load tasks from local storage
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            displayTasks(tasks);
+        }
+
+        document.addEventListener("DOMContentLoaded", loadTasks);
+
+        function addItem() {
+            const taskInput = document.getElementById("taskInput");
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                tasks.push({ text: taskText, completed: false });
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+
+                displayTasks(tasks);
+                taskInput.value = "";
+            }
+        }
+
+        function toggleItem(event) {
+            if (event.target.tagName === "LI") {
+                const index = event.target.dataset.index;
+                const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                tasks[index].completed = !tasks[index].completed;
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+
+                displayTasks(tasks);
+            }
+
+            if (event.target.classList.contains("delete-btn")) {
+                const index = event.target.dataset.index;
+                const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                tasks.splice(index, 1);
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+
+                displayTasks(tasks);
+            }
+        }
+
+        function displayTasks(tasks) {
+            const outputBox = document.getElementById("outputBox");
+            outputBox.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                const listItem = document.createElement("li");
+                listItem.dataset.index = index;
+
+                if (task.completed) {
+                    listItem.classList.add("completed");
+                    listItem.innerHTML = `${task.text} <span class="tick-mark">✔</span> <span class="delete-btn" onclick="deleteItem(event)">❌</span>`;
+                } else {
+                    listItem.innerHTML = `${task.text} <span class="delete-btn" onclick="deleteItem(event)">❌</span>`;
+                }
+
+                outputBox.appendChild(listItem);
+            });
+        }
+
+        function deleteItem(event) {
+            event.stopPropagation();
+
+            const index = event.target.parentElement.dataset.index;
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.splice(index, 1);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            displayTasks(tasks);
+        }
+    </script>
+
+    <script>
+        document.getElementById('taskInput').value = localStorage.getItem('inputText') || '';
+        document.getElementById('taskInput').addEventListener('input', function() {
+            localStorage.setItem('inputText', this.value);
+        });
+    </script>
+
+</body>
+</html>
